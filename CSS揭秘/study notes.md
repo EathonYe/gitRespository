@@ -1,1 +1,6 @@
-# study notes of CSS secrets
+# study notes of *CSS secrets*
+## 1. 通过box-shadow和outline实现边框内圆角 
+* 由于box-shadow和outline是在元素的外面添加实色效果，因此会增加元素视觉宽度但不增加实际宽度。（如果布局宽度固定，就需要调整内边距和外边距实现效果）
+* outline实现了外层边框的效果，box-shadow填补了描边和容器圆角不贴合造成的空隙。
+* 填补空隙所需的宽度可以通过勾股定理计算得到，不能将box-shadow指定的扩张值等于描边的宽度，要小一下，不然在某些浏览器中可能会得到异常渲染。
+* 如果希望边框不是纯色的，要加上纹理，使用两个元素实现会更加灵活。 
