@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 300px;
+            height: 100px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <strong>resize事件：</strong>
+        1）IE、Safari、Chrome、Opera会在浏览器窗口变化了1像素就出发resize事件，因此需要做防抖（设置间隔触发事件或在一个时间段内触发一次）；
+        2）窗口最大化或最小化也会触发resize事件；
+        3）resizeTo(浏览器窗口新宽度，浏览器窗口新高度)；
+        4）resizeBy(宽度差，高度差)；
+    </div>
+    
+    <script>
+        const odiv = document.getElementById('div1');
+        console.log(odiv.scrollHeight);
+        console.log(odiv.scrollWidth);
+        // odiv.addEventListener('scroll',function(){
+        //     alert(this.scrollLeft);
+        //     alert(this.scrollTop);
+        // });
+
+        odiv.addEventListener('scroll',debonce(foo,2000));
+
+        /*用户滚动时被调用的函数*/
+        function foo(){
+            // alert(this.scrollLeft);
+            alert(this.scrollTop);
+        }
+
+        /*限制下次函数调用之前必须等待的时间间隔*/
+        function debonce(fn,delay){
+            let timer = null;
+            return (function(){
+                let context = this;
+                let args = arguments;
+                clearTimeout(timer);  // 每次调用先清定时器，保证只执行最后一次
+                timer = setTimeout(function(){
+                    fn.apply(context,args);
+                },delay);
+            });
+        }
+
+        /*如果一个事件每100毫秒被触发10次，设置成每隔两秒执行一次这个函数*/
+    </script>
+</body>
+</html>

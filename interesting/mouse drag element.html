@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    #myDiv{
+        width: 300px;
+        height: 200px;
+        background: tan;
+        color: #fff;
+        font-size: 30px;
+        text-align: center;
+        position: absolute;
+        top: 100px;
+        left: 200px;
+        user-select:none;
+    }
+    </style>
+</head>
+<body>
+    <div id="myDiv">
+        Click me and drag mouse,then you will move me.
+    </div>
+    <script>
+        const myDiv = document.getElementById('myDiv');
+        let initX = 0,initY = 0,ready = false;
+
+        myDiv.addEventListener('mousedown',function(event){
+            event = event || window.event;
+            initX = event.clientX,initY = event.clientY;
+            ready = true;
+        },false);
+
+        myDiv.addEventListener('mouseup',function(){
+            ready = false;
+        },false);
+
+        myDiv.addEventListener('mousemove',function(event){
+            if(ready == true){
+                event = event || window.event;
+                let X = event.clientX,
+                    Y = event.clientY,
+                    offsetX = X - initX,
+                    offsetY = Y - initY,
+                    computedStyle = document.defaultView.getComputedStyle(myDiv,null),
+                    currentTop = ( parseInt(computedStyle.top)+offsetY ),
+                    currentLeft = ( parseInt(computedStyle.left)+offsetX );
+                myDiv.style.top = currentTop + 'px',
+                myDiv.style.left = currentLeft + 'px'; 
+                initX = X,initY = Y;
+            }else{
+                return 0;
+            }
+            
+            
+        },false);
+        
+    </script>
+</body>
+</html>
