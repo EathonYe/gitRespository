@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>毛玻璃效果</title>
+    <style>
+        html {height: 100%;}
+        body {
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: url("img/bg.jpg") 0 / cover fixed;
+            overflow: hidden;
+        }
+        /*在父元素中加背景色会改变毛玻璃的颜色，如果无背景色则会使毛玻璃更剔透*/
+        main {
+            width: 600px;
+            height: 400px;
+            line-height: 50px;
+            position: relative; 
+            font-size: 22px;
+            overflow: hidden;
+            border-radius: 8px;
+            /* background: hsla(0, 0%, 100%, .3); */
+        }
+        /*伪元素中加背景颜色无影响*/
+        main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            /* background: rgba(255, 0, 0, .5); */
+            /* background: hsla(0, 0%, 100%, .3); */
+            background: url("img/bg.jpg") 0 / cover fixed;
+            z-index: -1;
+            filter: blur(20px);
+            margin: -30px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <blockquote>
+            <span style="color:#fff;">"The only way to get rid of a temptation is to yield to it.</span>
+            The only way to get rid of a temptation is to yield to it.The only way to get rid of a temptation is to yield to it.The only way to get rid of a temptation is to yield to it."
+            <footer>
+                <cite>
+                    Oscar Wilde,
+                    The Picture of Dorian Gray
+                </cite>
+            </footer>
+        </blockquote>
+    </main>
+</body>
+</html>
