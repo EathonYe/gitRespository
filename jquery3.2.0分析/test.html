@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="jquery-3.2.0.js"></script>
+</head>
+<body>
+
+
+    <script>
+        console.log( new $().toArray());
+
+        function testSlice() {
+            console.log([].slice.call(arguments));
+        }
+        testSlice(1,2,3,4);
+
+        function Person() {
+
+        }
+//        Person.prototype = {
+//            name: 'Eathon'
+//        };
+        console.log(Object.isPrototypeOf(Person));
+        console.log(Object.hasOwnProperty(hasOwnProperty))
+
+        for (var prop in Object) { // 对象原型的属性都是不可枚举的，所以没有打印任何内容
+            if (!Object.hasOwnProperty(prop)) continue; // 跳过继承属性
+            else console.log(prop);
+        }
+
+        var person = new Person();
+        console.log(person.constructor);
+//        console.log(Object.getOwnPropertyNames());
+
+//        console.log(Object.getOwnPropertyNames(jQuery));
+
+        function test(selector) {
+            if (!selector) {
+                return this;
+            }
+        }
+        console.log($(''));
+    </script>
+</body>
+</html>
