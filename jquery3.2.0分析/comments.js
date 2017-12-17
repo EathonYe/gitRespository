@@ -165,7 +165,11 @@
     // 为jQuery添加实例属性和静态属性的工具方法，用于扩展
     // 也可以用于合并几个对象并排除重复项
     jQuery.extend = jQuery.fn.extend = function () {
-
+        var options, name, src, copy, copyIsArray, clone,
+		target = arguments[ 0 ] || {},
+		i = 1,
+		length = arguments.length,
+		deep = false;
     };
 
     // 为jQuery添加静态属性，无法被继承
