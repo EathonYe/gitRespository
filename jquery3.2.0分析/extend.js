@@ -84,6 +84,7 @@ function extend() {
 
 // ======================= 附带要看的 ====================================
 // 判断数据类型
+// 本质是通过Object.prototype.toString方法，但只兼容ES5及以上
 function type( obj ) {
     if ( obj == null ) {
         return obj + "";
@@ -94,6 +95,12 @@ function type( obj ) {
         class2type[ toString.call( obj ) ] || "object" :
         typeof obj;
 }
+
+// class2type中存储了一个map，保存所有的数据类型或者说是构造函数的class名
+jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
+function( i, name ) {
+	class2type[ "[object " + name + "]" ] = name.toLowerCase();
+} );
 
 // 判断是否为简单对象
 function isPlainObject( obj ) {
