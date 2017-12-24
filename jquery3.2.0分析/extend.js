@@ -1,3 +1,15 @@
+/**
+ * jQuery.extend只能做简单对象的合并，以及为方法添加静态属性
+ * 如果有更深层次的需求，就需要自己扩展
+ * 1. 只穿一个参数，添加至jQuery的命名空间
+ * 2. 穿两个以及上参数，后面的对象合并至第一个对象，并返回第一个对象
+ * 3. 第一个参数传true，进行深拷贝，即递归的合并对象
+ * 4. 第一个参数不能穿false，因为方法中只判断了是否为boolean类型
+ * 问题：
+ * 1. 属性描述符不能被复制
+ * 2. 只能复制可枚举属性
+ * 3. 只能复制合并简单对象
+ */
 function extend() {
     var options, name, src, copy, copyIsArray, clone,
         target = argument[0] || {},
@@ -15,6 +27,7 @@ function extend() {
 
     // 如果实参不是一个对象并且不是函数，则赋值空对象（排除数组、字符串、布尔值、数值、null、undefined）
     // 这里说明extend方法并不能合并成数组
+    // 这边也可以是为方法添加静态属性
     if ( typeof target !== 'object' && !jQuery.isFunction( target ) ) {
         target = {};
     }
@@ -71,12 +84,35 @@ function extend() {
 
 // ======================= 附带要看的 ====================================
 // 判断数据类型
-function type(obj) {
+function type( obj ) {
     if ( obj == null ) {
         return obj + "";
     }
+
+    // Support: Android <=2.3 only (functionish RegExp)
+    return typeof obj === "object" || typeof obj === "function" ?
+        class2type[ toString.call( obj ) ] || "object" :
+        typeof obj;
 }
 
-function isPlainObject(obj) {
+// 判断是否为简单对象
+function isPlainObject( obj ) {
+    var proto, Ctor;
+    
+    // Detect obvious negatives
+    // Use toString instead of jQuery.type to catch host objects
+    if ( !obj || toString.call( obj ) !== "[object Object]" ) {
+        return false;
+    }
 
+    proto = getProto( obj );
+
+    // Objects with no prototype (e.g., `Object.create( null )`) are plain
+    if ( !proto ) {
+        return true;
+    }
+
+    // Objects with prototype are plain iff they were constructed by a global Object function
+    Ctor = hasOwn.call( proto, "constructor" ) && proto.constructor;
+    return typeof Ctor === "function" && fnToString.call( Ctor ) === ObjectFunctionString;
 }
