@@ -10,6 +10,11 @@
  * 2. 只能复制可枚举属性
  * 3. 只能复制合并简单对象
  */
+
+/**
+ * $.extend() 为jQuery类添加静态属性，使用方式：$.each()
+ * $.fn.extend() 为jQuery.prototype添加静态属性，即为jQuery对象添加属性，使用方式：$('#div1').each()
+ */
 function extend() {
     var options, name, src, copy, copyIsArray, clone,
         target = argument[0] || {},
