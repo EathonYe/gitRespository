@@ -2,7 +2,7 @@
   <div id="app">
     <Header/>
     <!-- <img src="./assets/logo.png"> -->
-    <router-view/>
+    <router-view name="main"></router-view>
   </div>
 </template>
 
@@ -23,6 +23,9 @@ ul,
 li {
   margin: 0;
   padding: 0;
+}
+a {
+  text-decoration: none;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
