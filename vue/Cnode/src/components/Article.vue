@@ -4,7 +4,7 @@
   <div class="article-msg">
     <span>发布于{{createdTime}}</span>
     <span>作者{{article.author.loginname}}</span>
-    <span>{{article.visit_count}}</span>
+    <span>{{article.visit_count}}次浏览</span>
     <span>来自&nbsp;{{article.tab}}</span>
   </div>
   <div class="article-content" v-html="article.content"></div>
