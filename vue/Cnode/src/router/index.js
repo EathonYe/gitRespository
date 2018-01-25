@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from '@/components/Main'
-import Article from '@/components/Article'
+import Main from '@/pages/Main'
+import ArticleDetails from '@/pages/ArticleDetails'
 
 Vue.use(Router)
 
@@ -16,9 +16,9 @@ export default new Router({
     },
     {
       path: '/topic/:id',
-      name: 'Article',
+      name: 'ArticleDetails',
       components: {
-        main: Article
+        main: ArticleDetails
       }
     }
   ]

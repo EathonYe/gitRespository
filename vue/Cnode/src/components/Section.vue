@@ -6,7 +6,7 @@
       <span class="section-number_reply" title="回复数">{{item.reply_count}}</span>&nbsp;/&nbsp;<span class="section-number_click" title="点击数">{{item.visit_count}}</span>
     </div>
     <div class="section-title">
-      <router-link :to="{name: 'Article', params: {id: item.id}}">
+      <router-link :to="{name: 'ArticleDetails', params: {id: item.id}}">
         <span>{{item.title}}</span>
       </router-link>
       </div>
@@ -38,13 +38,15 @@ export default {
       const hours = minutes / 60
       const days = hours / 24
       if (days >= 1) {
-        return '1天前'
+        return Math.floor(days) + '天前'
       } else if (hours >= 1) {
-        return parseInt(hours) + '小时前'
+        return Math.ceil(hours) + '小时前'
       } else if (minutes >= 1) {
-        return parseInt(minutes) + '分钟前'
+        return Math.ceil(minutes) + '分钟前'
       } else if (seconds >= 1) {
-        return parseInt(seconds) + '秒前'
+        return Math.ceil(seconds) + '秒前'
+      } else {
+        return '现在'
       }
     }
   }
@@ -90,9 +92,17 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.section .section-title span {
+.section .section-title a {
   color: #333;
   cursor: pointer;
+  transition: all 0.5s;
+}
+.section .section-title a:visited {
+  color: grey;
+}
+.section .section-title a:hover {
+  /* text-decoration: underline; */
+  color: #000;
 }
 .section .section-right {
   overflow: hidden;

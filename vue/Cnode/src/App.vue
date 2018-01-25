@@ -27,6 +27,9 @@ li {
 a {
   text-decoration: none;
 }
+body {
+  background-color: #E1E1E1;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
