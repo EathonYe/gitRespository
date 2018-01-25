@@ -21,7 +21,7 @@ export default {
     getData () {
       this.limit += 10
       this.$http({
-        type: 'get',
+        method: 'get',
         url: 'https://cnodejs.org/api/v1/topics',
         params: {
           page: 1,

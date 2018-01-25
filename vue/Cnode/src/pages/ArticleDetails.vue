@@ -31,7 +31,7 @@ export default {
   },
   mounted () {
     this.$http({
-      type: 'get',
+      method: 'get',
       url: `https://cnodejs.org/api/v1${this.$route.path}`
     }).then((res) => {
       if (res.data.success) {
