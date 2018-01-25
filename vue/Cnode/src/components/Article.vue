@@ -14,18 +14,21 @@
 <script>
 export default {
   name: 'Article',
-  data () {
-    return {
-      article: {
-        title: '',
-        author: {
-          loginname: 'temp'
-        },
-        visit_count: '',
-        tab: '',
-        content: '',
-        create_at: '2017-04-130000',
-        replies: ''
+  props: {
+    article: {
+      type: Object,
+      default: function () {
+        return {
+          title: '',
+          author: {
+            loginname: 'temp'
+          },
+          visit_count: '',
+          tab: '',
+          content: '',
+          create_at: '2017-04-130000',
+          replies: ''
+        }
       }
     }
   },
@@ -50,20 +53,6 @@ export default {
         return '现在'
       }
     }
-  },
-  mounted () {
-    this.$http({
-      type: 'get',
-      url: `https://cnodejs.org/api/v1${this.$route.path}`
-    }).then((res) => {
-      if (res.data.success) {
-        this.article = res.data.data
-      } else {
-        console.log('Article.vue', res)
-      }
-    }).catch((res) => {
-      console.log('Article.vue', res)
-    })
   }
 }
 </script>
