@@ -1,8 +1,8 @@
 <template>
     <div class="sec-container">
-      <router-link v-for="item of content" :key="item.id" :to="{name: 'Main'}">
-        <Section :item="item"></Section>
-      </router-link>
+      <!-- <router-link v-for="item of content" :key="item.id" :to="{name: 'Article', params: {id: item.id}}">
+      </router-link> -->
+      <Section v-for="item of content" :key="item.id" :item="item"></Section>
     </div>
 </template>
 

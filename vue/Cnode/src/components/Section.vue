@@ -5,7 +5,11 @@
     <div class="section-number">
       <span class="section-number_reply" title="回复数">{{item.reply_count}}</span>&nbsp;/&nbsp;<span class="section-number_click" title="点击数">{{item.visit_count}}</span>
     </div>
-    <div class="section-title"><span>{{item.title}}</span></div>
+    <div class="section-title">
+      <router-link :to="{name: 'Article', params: {id: item.id}}">
+        <span>{{item.title}}</span>
+      </router-link>
+      </div>
   </div>
   <div class="section-right">{{last_reply_at}}</div>
 </section>
@@ -87,6 +91,7 @@ export default {
   text-overflow: ellipsis;
 }
 .section .section-title span {
+  color: #333;
   cursor: pointer;
 }
 .section .section-right {
