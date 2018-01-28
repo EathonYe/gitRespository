@@ -103,6 +103,10 @@ export default {
 .section .section-title a:hover {
   /* text-decoration: underline; */
   color: #000;
+  font-size: 22px;
+}
+.section .section-title a:visited:hover {
+  color: #5c5757;
 }
 .section .section-right {
   overflow: hidden;
