@@ -59,7 +59,7 @@ export default {
 
 <style>
 .article {
-  width: 65%;
+  /* width: 65%; */
   min-height: 300px;
   background-color: #F9FAFC;
   border: 1px solid #ddd;

@@ -1,6 +1,11 @@
 <template>
 <div class="article-details">
-  <Article :article="article" />
+  <div class="left-container">
+    <Article :article="article" />
+    <div class="reply">
+      <reply v-for="(reply, key) in article.replies" :key="key" :reply="reply"></reply>
+    </div>
+  </div>
   <div class="side-bar">
     <Label>
       <author-msg :name="article.author.loginname"></author-msg>
@@ -13,6 +18,7 @@
 import Article from '@/components/Article'
 import Label from '@/components/Label'
 import AuthorMsg from '@/components/AuthorMsg'
+import Reply from '@/components/Reply'
 export default {
   name: 'ArticleDetails',
   data () {
@@ -27,7 +33,8 @@ export default {
   components: {
     Article,
     Label,
-    AuthorMsg
+    AuthorMsg,
+    Reply
   },
   mounted () {
     this.$http({
@@ -53,8 +60,16 @@ export default {
   flex-direction: row;
   justify-content: center;
 }
+.left-container {
+  width: 65%;
+}
 .article-details .side-bar {
   width: calc(18% + 20px);
   padding-left: 20px;
+}
+.reply {
+  background-color: #F9FAFC;
+  border: 1px solid #ddd;
+  margin-top: 15px;
 }
 </style>
