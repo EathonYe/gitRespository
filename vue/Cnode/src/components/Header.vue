@@ -11,12 +11,12 @@
       </div>
       <div class="right">
         <ul>
-          <li>首页</li>
-          <li>新手入门</li>
-          <li>API</li>
-          <li>关于</li>
-          <li>注册</li>
-          <li>登录</li>
+          <li><router-link to="/">首页</router-link></li>
+          <li><router-link to="/">新手入门</router-link></li>
+          <li><router-link to="/">API</router-link></li>
+          <li><router-link to="/">关于</router-link></li>
+          <li><router-link to="/">注册</router-link></li>
+          <li><router-link to="/login">登录</router-link></li>
         </ul>
       </div>
     </div>
@@ -89,9 +89,12 @@ export default {
   display: inline-block;
   padding: 0 10px;
   cursor: pointer;
+}
+.header ul li a {
+  color: #aeaeae;
   transition: color 0.5s;
 }
-.header ul li:hover {
+.header ul li a:hover {
   color: #fff;
 }
 </style>
