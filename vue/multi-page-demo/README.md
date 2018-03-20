@@ -27,4 +27,8 @@ npm run e2e
 npm test
 ```
 
+# 修改成多页面的配置
+1. 增加entry.config.js统一处理所有的入口
+2. 修改webpack.dev.conf.js webpack.prod.conf.js中的html文件引用的js和输出路径
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
