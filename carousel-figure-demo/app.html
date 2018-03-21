@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图demo</title>
+</head>
+<style>
+    html,body {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        box-sizing: content-box;
+        width: 600px;
+        height: 400px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 9px 10px #999;
+        overflow: hidden;
+    }
+    #list {
+        height: 100%;
+        list-style: none;
+        display: flex;
+        flex-wrap: nowrap;
+        margin: 0px;
+        padding: 0px;
+        transition: left .5s ease-in-out;
+        position: absolute;
+        left: 0px;
+    }
+    .container ul li img {
+        width: 600px;
+        height: 400px;
+    }
+    .container .arrow {
+        width: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, .3);
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+        position: absolute;
+        top: clac(50%-25px);
+        text-decoration: none;
+        visibility: hidden;
+
+        transition: background-color .5s;
+    }
+    .container:hover .arrow{
+        visibility: visible;
+    }
+    .container .arrow:hover {
+        background-color: rgba(0, 0, 0, .6);
+    }
+    #prev {
+        left: 25px;
+    }
+    #next {
+        right: 25px;
+    }
+</style>
+<body>
+    <div class="container">
+        <ul id="list" style="left: 0px;">
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/5.jpg" alt=""></li>
+        </ul>
+        <a href="javascript:void(0);" class="arrow" id="prev">&lt;</a>
+        <a href="javascript:void(0);" class="arrow" id="next">&gt;</a>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const prev = document.getElementById('prev'),
+                next = document.getElementById('next'),
+                list = document.getElementById('list'),
+                total = 5,
+                simgleWidth = 600;
+
+            prev.addEventListener('click', () => {
+                animate(600);
+            }, false);
+
+            next.addEventListener('click', () => {
+                animate(-600);
+            }, false);
+
+            function animate(offset) {
+                const left = parseInt(list.style.left),
+                    newLeft = left + offset;
+
+                if (newLeft > 0) {
+                    list.style.left = -1 * simgleWidth * (total - 1) + 'px';
+                    return;
+                }
+                if (newLeft <= simgleWidth * total * -1) {
+                    list.style.left = '0px';
+                    return;
+                }
+                list.style.left = `${newLeft}px`;
+
+            }
+        };
+    </script>
+</body>
+</html>
