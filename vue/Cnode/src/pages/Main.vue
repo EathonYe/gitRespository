@@ -12,31 +12,17 @@ export default {
   name: 'MainSec',
   data () {
     return {
-      loading: true,
-      content: [],
-      limit: 0
+      loading: true
+    }
+  },
+  computed: {
+    content () {
+      return this.$store.state.content
     }
   },
   methods: {
     getData () {
-      this.limit += 10
-      this.$http({
-        method: 'get',
-        url: 'https://cnodejs.org/api/v1/topics',
-        params: {
-          page: 1,
-          limit: this.limit,
-          mdrender: 'false'
-        }
-      }).then((res) => {
-        if (res.data.success) {
-          this.content = res.data.data
-        } else {
-          console.log('Main.vue', res)
-        }
-      }).catch((res) => {
-        console.log('Main.vue', res)
-      })
+      this.$store.dispatch('getContent')
     },
     scrollMethod () {
       const sumH = document.documentElement.scrollHeight || document.body.scrollHeight
