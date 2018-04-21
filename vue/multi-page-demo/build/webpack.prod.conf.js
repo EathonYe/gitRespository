@@ -152,7 +152,7 @@ pageEntries.forEach((v) => {
     new HtmlWebpackPlugin({
       filename: `views/${v}.html`,
       template: 'index.html',
-      chunks: [v], // 指定引用的js文件，默认引用所有的js文件
+      chunks: [v, 'vendor', 'manifest', 'app'], // 指定引用的js文件，默认引用所有的js文件
       inject: true,
       minify: {
         removeComments: true,
